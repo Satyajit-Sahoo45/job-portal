@@ -19,6 +19,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         baseTheme: dark,
       }}
       publishableKey={PUBLISHABLE_KEY}
+      signInFallbackRedirectUrl="/"
       afterSignOutUrl="/"
     >
       <App />
