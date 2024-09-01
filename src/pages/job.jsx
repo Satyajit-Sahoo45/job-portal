@@ -15,6 +15,7 @@ import { Briefcase, DoorClosed, DoorOpen, MapPinIcon } from "lucide-react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { BarLoader } from "react-spinners";
+import { toast } from "sonner";
 
 const JobPage = () => {
   const { id } = useParams();
@@ -41,7 +42,7 @@ const JobPage = () => {
 
   const handleStatusChange = (value) => {
     const isOpen = value === "open";
-    fnHiringStatus(isOpen).then(() => fnJob());
+    fnHiringStatus(isOpen).then(() => { fnJob(); toast.success("Status Changed") });
   };
 
   if (!isLoaded || loadingJob) {

@@ -19,6 +19,7 @@ import * as z from "zod";
 import useFetch from "@/hooks/use-fetch";
 import { applyToJob } from "@/api/apiApplication";
 import { BarLoader } from "react-spinners";
+import { toast } from "sonner";
 
 const schema = z.object({
   experience: z
@@ -67,6 +68,7 @@ export function ApplyJobDrawer({ user, job, fetchJob, applied = false }) {
       resume: data.resume[0],
     }).then(() => {
       fetchJob();
+      toast.success("Application Submitted Successfully ✨");
       reset();
     });
   };
@@ -150,7 +152,7 @@ export function ApplyJobDrawer({ user, job, fetchJob, applied = false }) {
             <p className="text-red-500">{errorApply?.message}</p>
           )}
           {loadingApply && <BarLoader width={"100%"} color="#36d7b7" />}
-          <Button type="submit" variant="blue" size="lg">
+          <Button type="submit" variant="blue" size="lg" className={`${loadingApply && "cursor-not-allowed"}`}>
             Apply
           </Button>
         </form>
