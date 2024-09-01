@@ -51,13 +51,14 @@ export async function getSingleJob(token, { job_id }) {
   let query = supabase
     .from("jobs")
     .select(
-      "*, company: companies(name,logo_url), applications: applications(*)"
+      "*, company: companies(name,logo_url), applications: applications!applications_job_id_fkey(*)"
     )
     .eq("id", job_id)
     .single();
 
   const { data, error } = await query;
 
+  console.log(data, "data simple k")
   if (error) {
     console.error("Error fetching Job:", error);
     return null;
