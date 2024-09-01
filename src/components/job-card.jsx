@@ -18,7 +18,7 @@ import { BarLoader } from "react-spinners";
 const JobCard = ({
   job,
   savedInit = false,
-  onJobAction = () => {},
+  onJobAction = () => { },
   isMyJob = false,
 }) => {
   const [saved, setSaved] = useState(savedInit);
@@ -33,7 +33,9 @@ const JobCard = ({
     loading: loadingSavedJob,
     data: savedJob,
     fn: fnSavedJob,
-  } = useFetch(saveJob);
+  } = useFetch(saveJob, {
+    alreadySaved: saved
+  });
 
   const handleSaveJob = async () => {
     await fnSavedJob({

@@ -47,6 +47,7 @@ export async function getSavedJobs(token) {
 // Read single job
 export async function getSingleJob(token, { job_id }) {
   const supabase = await supabaseClient(token);
+  console.log(job_id, "job_id")
   let query = supabase
     .from("jobs")
     .select(
@@ -70,6 +71,7 @@ export async function saveJob(token, { alreadySaved }, saveData) {
   const supabase = await supabaseClient(token);
 
   if (alreadySaved) {
+    console.log("1..........")
     // If the job is already saved, remove it
     const { data, error: deleteError } = await supabase
       .from("saved_jobs")
@@ -84,6 +86,7 @@ export async function saveJob(token, { alreadySaved }, saveData) {
     return data;
   } else {
     // If the job is not saved, add it to saved jobs
+    console.log("2..........")
     const { data, error: insertError } = await supabase
       .from("saved_jobs")
       .insert([saveData])

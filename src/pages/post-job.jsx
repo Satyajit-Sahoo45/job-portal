@@ -133,7 +133,7 @@ const PostJob = () => {
                   <SelectValue placeholder="Company">
                     {field.value
                       ? companies?.find((com) => com.id === Number(field.value))
-                          ?.name
+                        ?.name
                       : "Company"}
                   </SelectValue>
                 </SelectTrigger>
