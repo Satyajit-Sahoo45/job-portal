@@ -17,6 +17,7 @@ import useFetch from "@/hooks/use-fetch";
 import { addNewCompany } from "@/api/apiCompanies";
 import { BarLoader } from "react-spinners";
 import { useEffect } from "react";
+import { toast } from "sonner";
 
 const schema = z.object({
   name: z.string().min(1, { message: "Company name is required" }),
@@ -53,6 +54,7 @@ const AddCompanyDrawer = ({ fetchCompanies }) => {
       ...data,
       logo: data.logo[0],
     });
+    toast.success("New company added.")
   };
 
   useEffect(() => {

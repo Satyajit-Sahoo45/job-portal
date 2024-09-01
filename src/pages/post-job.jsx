@@ -22,6 +22,7 @@ import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Navigate, useNavigate } from "react-router-dom";
 import { BarLoader } from "react-spinners";
+import { toast } from "sonner";
 import { z } from "zod";
 
 const schema = z.object({
@@ -59,6 +60,7 @@ const PostJob = () => {
       recruiter_id: user.id,
       isOpen: true,
     });
+    toast.success("New Job created successfully")
   };
 
   useEffect(() => {
